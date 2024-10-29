@@ -1,0 +1,147 @@
+.right-style {
+	float: right;
+}
+
+.main-page {
+	background-color:aliceblue;
+	text-align:center;
+	border-top:2px solid lightgrey;
+	width:100%;
+	
+}
+
+.upload {
+	text-align:left;
+	width:85%;
+	margin:auto;
+}
+
+input[type="file"]::file-selector-button {
+	width:100px;
+	height:35px;
+	color: black;
+	background-color:#FFE3F6;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	font-size:15px;
+}
+input[type="file"]::file-selector-button:hover {
+	width:100px;
+	height:35px;
+	color: black;
+	background-color:#FFBEEA;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	font-size:15px;
+}
+input[type="file"]::file-selector-button:active {
+	width:100px;
+	height:35px;
+	color: black;
+	background-color:#FFAFE5;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	font-size:15px;
+}
+input[type="file"] {
+	color: darkslategray;
+	font-size:15px;
+}
+
+#selCategories {
+	background-color:#FFF3FB;
+	border-style:solid;
+	border-color:#FC9FDC;
+	border-radius:4px;
+	margin-left:42px;
+	margin-top:20px;
+	width:83%;
+	height:30px;
+	font-size:17px;
+}
+
+#txtName {
+	background-color:#FFF3FB;
+	border-style:solid;
+	border-color:#FDCCEC;
+	border-radius:4px;
+	margin-left:10px;
+	margin-top:20px;
+	width:83%;
+	height:27px;
+	font-size:20px;
+}
+
+#videoCover {
+	margin-top:40px;
+}
+
+#videoSubmit {
+	text-align:center;
+	margin-top:40px;
+}
+
+#btnNewCategory {
+	color: black;
+	background-color:#FFE3F6;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:30px;
+	width:90px;
+	font-size:14px;
+	margin-top:40px;
+	margin-left:10px;
+}
+#btnNewCategory:hover {
+	color: black;
+	background-color:#FFBEEA;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:30px;
+	width:90px;
+	font-size:14px;
+	margin-top:40px;
+	margin-left:10px;
+}
+#btnNewCategory:active {
+	color: black;
+	background-color:#FFAFE5;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:30px;
+	width:90px;
+	font-size:14px;
+	margin-top:40px;
+	margin-left:10px;
+}
+
+#btnSubmit {
+    color: black;
+	background-color:#FFE3F6;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:35px;
+	width:200px;
+	font-size:15px;
+	margin-top:40px;
+}
+#btnSubmit:hover {
+    color: black;
+	background-color:#FFBEEA;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:35px;
+	width:200px;
+	font-size:15px;
+	margin-top:40px;
+}
+#btnSubmit:active {
+    color: black;
+	background-color:#FFAFE5;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:35px;
+	width:200px;
+	font-size:15px;
+	margin-top:40px;
+}

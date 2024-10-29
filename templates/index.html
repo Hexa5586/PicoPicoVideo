@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="main">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="../static/css/style_index.css" />
+		<title>ピコピコ動画</title>
+		<link rel="shortcut icon" href="../static/images/favicon.ico" />
+	</head>
+	
+	<body>
+		<img id="logo" src="static/images/logo.png" alt="StarPlayer" >
+		<div class="right-style">
+			<label style="font-size:10px; color:grey;" class="right-style">&nbsp;&nbsp;Powered by StarPlayer v1.0.0<br>Created by HoshiInori. 24级计科1班 许竞舟 SDU Openlab复试作品</label><br>
+		<a class="right-style" id="btnUpload" style="margin-top:10px;">上传</a>
+		</div>
+		
+		<hr>
+		<div class="main-page">
+			<div class = "left-panel" id="divCategory">
+				<div class="title">
+					<h1>分区</h1>
+				</div>
+				{% for key, val in categories.items() %}
+				<div class="categories">
+					<img src="static/images/folder.png" style="width:30px;height:30px;vertical-align:middle;" alt="Folder" />
+					<a href="{{val}}"> {{key}} </a>
+				</div>
+				{% endfor %}
+			</div>
+			
+  			<div class = "right-panel" id="divList">
+				<div class="title">
+					<h1>视频</h1>
+					<h3>{{name}}</h3>
+				</div>
+				{% for key, val in videos.items() %}
+				<div class="videos">
+					<img src="{{val[1]}}" style="width:160px;height=90px;vertical-align:middle;border-radius:5px;" alt="Cover" />
+					<a href="{{val[0]}}"> {{key}} </a>
+				</div>
+				{% endfor %}
+			
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+	document.getElementById("btnUpload").href = "http://" + window.location.host + "/upload";
+</script>

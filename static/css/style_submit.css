@@ -1,0 +1,9 @@
+.right-style {
+	float: right;
+}
+
+.info {
+	text-align:center;
+	border-top:2px solid lightgrey;
+	width:100%;
+}

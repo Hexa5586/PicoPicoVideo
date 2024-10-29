@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="main">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="../static/css/style_submit.css" />
+		<title>提示 - ピコピコ動画</title>
+		<link rel="shortcut icon" href="../static/images/favicon.ico" />
+	</head>
+	
+	<body>
+		<img id="logo" src="../static/images/logo.png" alt="StarPlayer" >
+		<div class="right-style">
+			<label style="font-size:10px; color:grey;" class="right-style">&nbsp;&nbsp;Powered by StarPlayer v1.0.0<br>Created by HoshiInori. 24级计科1班 许竞舟 SDU Openlab复试作品</label>
+		</div>
+		
+		<div class="info">
+			<h1>视频上传成功！</h1>
+			<h3>视频名称：{{name}}</h3>
+			<h3>分区：{{category_name}}</h3>
+			<p>将于3秒后返回标题...</p>
+		</div>
+	</body>
+</html>
+
+<script>
+	var link = document.createElement("a");
+	link.href = "http://" + window.location.host + "/";
+	setTimeout(function(){
+		link.click();
+	}, 3000);
+</script>

@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="main">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="../static/css/style_player.css" />
+		<title>{{title}} - ピコピコ動画</title>
+		<link rel="shortcut icon" href="../static/images/favicon.ico" />
+	</head>
+	
+	<body>
+		<img id="logo" src="../static/images/logo.png" alt="StarPlayer" >
+		<div class="right-style">
+			<label style="font-size:10px; color:grey;" class="right-style">&nbsp;&nbsp;Powered by StarPlayer v1.0.0<br>Created by HoshiInori. 24级计科1班 许竞舟 SDU Openlab复试作品</label>
+		</div>
+		
+		<div class="player">
+			<div class="caption">
+				<p class="pCaption" id="pCaption" style="font-size:24px;">{{title}}</p>
+			</div>
+			<video class="video" id="video" src="{{source}}"></video>
+			
+			<div class="progress">
+				<label class="lblProgress" id="lblProgress" for="rangeProgress">00:00:00 / 00:00:00&nbsp;</label>
+				<input id="rangeProgress" type="range" value="0" max="1000" align="middle">
+			</div>
+			<div class="empty">&nbsp;</div>
+			<div class="controls">
+				<button class="btnControls" id="btnPlayPause">4</button><div class="empty">&nbsp;&nbsp;</div>
+				<button class="btnControls" id="btnStop" onClick="videoStop()">◼</button><div class="empty">&nbsp;&nbsp;</div>
+				<button class="btnControls" id="btnBackward" onClick="videoBackward()">7</button><div class="empty">&nbsp;&nbsp;</div>
+				<button class="btnControls" id="btnForward" onClick="videoForward()">8</button><div class="empty">&nbsp;&nbsp;</div>
+				<label for="rangeVolume">&nbsp;&nbsp;&nbsp;音量&nbsp;&nbsp;</label>
+				<input type="range" class="rangeControls" id="rangeVolume" value="50" max="100">
+				<label for="txtRate">&nbsp;&nbsp;&nbsp;倍速&nbsp;&nbsp;</label>
+				<input type="number" class="rangeControls" id="txtRate" min="0.1" max="16.0" step="0.1" value="1">
+				<a class="btnDownload" href="{{link}}">下载视频</a>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script>
+	var vid = document.getElementById("video");
+	var rangeProg = document.getElementById("rangeProgress");
+	var btnPP = document.getElementById("btnPlayPause");
+	var btnStop = document.getElementById("btnStop")
+	var btnForward = document.getElementById("btnForward");
+	var btnBackward = document.getElementById("btnBackward");
+	var rangeVolume = document.getElementById("rangeVolume");
+	var lblProgress = document.getElementById("lblProgress");
+	var txtRste = document.getElementById("txtRate");
+	
+	var dragging = false;
+	var accelerating = false;
+	vid.volume = 0.5;
+	
+	function fm(s){
+		if(s.length == 1)	return '0' + s;
+		else	return s;
+	}
+	
+	vid.addEventListener("timeupdate",function(){
+		if(!dragging){
+			rangeProg.value = 1000 * this.currentTime / this.duration;
+			var tot_h = parseInt(vid.duration / 3600), tot_m = parseInt(vid.duration / 60) % 60, tot_s = parseInt(vid.duration % 60);
+			var now_h = parseInt(vid.currentTime / 3600), now_m = parseInt(vid.currentTime / 60) % 60, now_s = parseInt(vid.currentTime % 60);
+			const now_t = fm(now_h.toString()) + ":" + fm(now_m.toString()) + ":" + fm(now_s.toString()) + " / "
+						+ fm(tot_h.toString()) + ":" + fm(tot_m.toString()) + ":" + fm(tot_s.toString());
+			lblProgress.textContent = now_t;
+		}
+	});
+	
+	vid.addEventListener("ended", function(){
+		vid.currentTime = 0;
+		rangeProg.value = 0;
+	});
+	
+	vid.addEventListener("mousedown", function(){
+		this.onmouseup = function(){
+            btnPP.click();
+        }
+	});
+	
+	document.addEventListener("keydown", function(e){
+		if(document.activeElement != rangeVolume){
+			// 左方向键
+			if(e.keyCode == 37 && !e.repeat){
+				videoBackward();
+			}
+			// 右方向键
+			else if(e.keyCode == 39){
+				if(!e.repeat){
+					videoForward();
+				}
+				else{
+					videoSpeed(3.0);
+					accelerating = true;
+				}
+			}
+		}
+		if(e.keyCode == 32){
+			btnPP.click();
+		}
+	});
+	
+	document.addEventListener("keyup", function(e){
+		if(accelerating){
+			if(txtRate.value >= 0.1 && txtRate.value <= 16.0){
+				videoSpeed(parseFloat(txtRate.value));
+			}
+			else{
+				videoSpeed(1.0);
+			}
+			accelerating = false;
+		}
+	});
+	
+	rangeProg.addEventListener("mousedown", function(){
+		this.onmousedown = function(){
+			videoPause();
+			dragging = true;
+		}
+        this.onmousemove = function(){
+            vid.currentTime = this.value * vid.duration / 1000;
+        }
+		// 结束进度条的选中状态
+        this.onmouseup = function(){
+            this.onmousemove = null;
+            this.onmouseup = null;
+			vid.currentTime = this.value * vid.duration / 1000;
+			dragging = false;
+			videoPlay();
+        }
+    });
+	
+	rangeVolume.addEventListener("mousedown", function(){
+		this.onmousemove = function(){
+			vid.volume = rangeVolume.value / 100;
+		}
+	});
+	
+	txtRate.addEventListener("change", function(){
+		// alert("triggered.");
+		if(txtRate.value >= 0.1 && txtRate.value <= 16.0){
+			videoSpeed(parseFloat(txtRate.value));
+		}
+		else{
+			videoSpeed(1.0);
+		}
+	});
+	
+	
+	btnPP.addEventListener("click", function(){
+		if(vid.paused == true){
+			videoPlay();
+		}
+		else{
+			videoPause();
+		}
+	});
+	
+	function videoPlay(){
+		vid.play();
+		btnPP.textContent = ";";
+	}
+	
+	function videoPause(){
+		vid.pause();
+		btnPP.textContent = "4";
+	}
+	
+	function videoStop(){
+		vid.pause();
+		btnPP.textContent = "4";
+		vid.currentTime = 0;
+	}
+	
+	function videoForward(){
+		vid.currentTime += 5;
+	}
+	
+	function videoBackward(){
+		vid.currentTime -= 5;
+	}
+	
+	function videoSpeed(rate){
+		vid.playbackRate = rate;
+	}
+	
+	window.onload = function(){
+		videoPlay();
+	}
+	
+</script>
