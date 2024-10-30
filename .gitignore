@@ -1,4 +1,5 @@
 __pycache__
-static/movies
+static/movies/*
+!static/movies/.gitkeep
 .vs
 start.bat
