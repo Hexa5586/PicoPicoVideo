@@ -18,7 +18,7 @@
 		
 		<div class="search">
 			<input type="text" id="txtQuery" value="{{query}}" />
-			
+			<button class="right-style" id="btnSearch">搜索</button>
 		</div>
 		
 		<div class="main-page">
@@ -52,4 +52,19 @@
 </html>
 <script>
 	document.getElementById("btnUpload").href = "http://" + window.location.host + "/upload";
+	
+	var btnSearch = document.getElementById("btnSearch");
+	var txtQuery = document.getElementById("txtQuery");
+	btnSearch.addEventListener("click", function(){
+		var link = document.createElement("a");
+		link.href = "http://" + window.location.host + "/search?query=" + txtQuery.value;
+		link.click();
+	});
+	
+	document.addEventListener("keydown", function(e){
+		if(document.activeElement == txtQuery && e.keyCode == 13){
+			btnSearch.click();
+		}
+	});
+	
 </script>

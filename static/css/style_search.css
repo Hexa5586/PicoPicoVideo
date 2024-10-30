@@ -1,0 +1,137 @@
+.right-style {
+	float: right;
+}
+
+.main-page {
+	display:flex;
+	flex-direction: row;
+	width:100%;
+}
+
+.panel {
+	background-color:#FFE3F6;
+	border:5px solid white;
+	border-radius:10px;
+	width:100%;
+	min-height: 800px;
+	height:auto;
+}
+
+.videos {
+	margin-left:20px;
+	margin-top:10px;
+}
+
+.videos:hover {
+	margin-left:20px;
+	margin-top:10px;
+	background-color:#EBC4DE;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+	margin-left:10px;
+}
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: blue;
+}
+
+#btnUpload {
+    text-decoration: none;
+    color: black;
+	margin-left:30px;
+	background-color:#FFE3F6;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:22px;
+	width:100px;
+	vertical-align:center;
+	text-align:center;
+}
+
+#btnUpload:link {
+    text-decoration: none;
+    color: black;
+	margin-left:30px;
+	background-color:#FFE3F6;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:22px;
+	width:100px;
+	vertical-align:center;
+	text-align:center;
+}
+
+#btnUpload:visited {
+    text-decoration: none;
+    color: black;
+	margin-left:30px;
+	background-color:#FFE3F6;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:22px;
+	width:100px;
+	vertical-align:center;
+	text-align:center;
+}
+
+#btnUpload:hover {
+    text-decoration: none;
+    color: black;
+	margin-left:30px;
+	background-color:#FFBEEA;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:22px;
+	width:100px;
+	vertical-align:center;
+	text-align:center;
+}
+
+#txtQuery {
+	border: 3px solid #3FCAFF;
+	border-radius:6px;
+	font-size:22px;
+	width:91%;
+	margin-left:2px;
+	outline:none;
+}
+
+#btnSearch {
+    color: black;
+	margin-left:30px;
+	background-color:#FFE3F6;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:30px;
+	width:100px;
+	vertical-align:center;
+	text-align:center;
+	font-size:15px;
+}
+
+#btnSearch:hover {
+    color: black;
+	margin-left:30px;
+	background-color:#FFBEEA;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:30px;
+	width:100px;
+	vertical-align:center;
+	text-align:center;
+	font-size:15px;
+}

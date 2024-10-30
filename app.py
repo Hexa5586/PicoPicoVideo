@@ -12,8 +12,8 @@ def index():
     category_key = []
     
     for name in category_nums:
-            with open(path + "\\" + name + "\\title.txt", 'r', encoding='utf-8') as file:
-                category_key.append(file.read())
+        with open(path + "\\" + name + "\\title.txt", 'r', encoding='utf-8') as file:
+            category_key.append(file.read())
     
     category_val = [(request.host_url + "?category=" + name) for name in category_nums]
     c = dict(zip(category_key, category_val))
@@ -27,6 +27,7 @@ def index():
         for name in video_nums:
             with open(category_path + "\\" + name + "\\title.txt", 'r', encoding='utf-8') as file:
                 video_key.append(file.read())
+                file.close()
         
         video_url = [(request.host_url + "player/" + "?category=" + selected_category + "&video=" + name) for name in video_nums]
         video_cover = [(request.host_url + "static/movies/" + selected_category + "/" + name + "/cover.png") for name in video_nums]
@@ -36,6 +37,35 @@ def index():
         return render_template("index.html", categories=c, name=category_key[int(selected_category)], videos=v)
     else:
         return render_template("index.html", categories=c, name="", videos={})
+    
+
+@app.route('/search/')
+def search():
+    q = request.args.get("query")
+    category_nums = [name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))]
+    print(category_nums)
+    query_video_key = []
+    query_video_url = []
+    query_video_cover = []
+    
+    for c_num in category_nums:
+        category_path = path + "\\" + str(c_num)
+        video_nums = [name for name in os.listdir(category_path) if os.path.isdir(os.path.join(category_path, name))]
+        
+        for v_num in video_nums:
+            with open(category_path + "\\" + str(v_num) + "\\title.txt", 'r', encoding='utf-8') as file:
+                video_name = file.read()
+                print(video_name)
+                file.close()
+                if q.strip().lower() in video_name.strip().lower():
+                    query_video_key.append(video_name)
+                    query_video_url.append(request.host_url + "player/" + "?category=" + str(c_num) + "&video=" + str(v_num))
+                    query_video_cover.append(request.host_url + "static/movies/" + str(c_num) + "/" + str(v_num) + "/cover.png")
+
+    query_video_val = list(zip(query_video_url, query_video_cover))
+        
+    v = dict(zip(query_video_key, query_video_val))
+    return render_template("search.html", query=q, videos=v, total=len(v))
     
 
 @app.route('/player/')

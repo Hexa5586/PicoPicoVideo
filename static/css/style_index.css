@@ -120,3 +120,38 @@ a:hover {
 	vertical-align:center;
 	text-align:center;
 }
+
+#txtQuery {
+	border: 3px solid #3FCAFF;
+	border-radius:6px;
+	font-size:22px;
+	width:91%;
+	margin-left:2px;
+	outline:none;
+}
+
+#btnSearch {
+    color: black;
+	margin-left:30px;
+	background-color:#FFE3F6;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:30px;
+	width:100px;
+	vertical-align:center;
+	text-align:center;
+	font-size:15px;
+}
+
+#btnSearch:hover {
+    color: black;
+	margin-left:30px;
+	background-color:#FFBEEA;
+	border-radius:5px;
+	border: 2px solid #FDB8E5;
+	height:30px;
+	width:100px;
+	vertical-align:center;
+	text-align:center;
+	font-size:15px;
+}
