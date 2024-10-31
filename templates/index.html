@@ -56,12 +56,14 @@
 	var btnSearch = document.getElementById("btnSearch");
 	var txtQuery = document.getElementById("txtQuery");
 	btnSearch.addEventListener("click", function(){
+		// 动态生成链接进行模拟点击
 		var link = document.createElement("a");
 		link.href = "http://" + window.location.host + "/search?query=" + txtQuery.value;
 		link.click();
 	});
 	
 	document.addEventListener("keydown", function(e){
+		// 按下Enter时响应
 		if(document.activeElement == txtQuery && e.keyCode == 13){
 			btnSearch.click();
 		}

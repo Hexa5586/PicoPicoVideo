@@ -50,9 +50,9 @@
 	var lblProgress = document.getElementById("lblProgress");
 	var txtRste = document.getElementById("txtRate");
 	
-	var dragging = false;
-	var accelerating = false;
-	vid.volume = 0.5;
+	var dragging = false;	// 指示进度条的拖拽状态
+	var accelerating = false;	// 指示视频的加速状态
+	vid.volume = 0.5;	// 默认音量50%
 	
 	function fm(s){
 		if(s.length == 1)	return '0' + s;
@@ -104,7 +104,7 @@
 	});
 	
 	document.addEventListener("keyup", function(e){
-		if(accelerating){
+		if(accelerating){	// 仅当通过长按右方向键进行视频加速时才进行响应
 			if(txtRate.value >= 0.1 && txtRate.value <= 16.0){
 				videoSpeed(parseFloat(txtRate.value));
 			}
@@ -117,6 +117,7 @@
 	
 	rangeProg.addEventListener("mousedown", function(){
 		this.onmousedown = function(){
+			// 拖拽时暂停视频播放，以免进度条颤动
 			videoPause();
 			dragging = true;
 		}
@@ -140,7 +141,6 @@
 	});
 	
 	txtRate.addEventListener("change", function(){
-		// alert("triggered.");
 		if(txtRate.value >= 0.1 && txtRate.value <= 16.0){
 			videoSpeed(parseFloat(txtRate.value));
 		}
@@ -187,6 +187,7 @@
 		vid.playbackRate = rate;
 	}
 	
+	// 自动播放
 	window.onload = function(){
 		videoPlay();
 	}
